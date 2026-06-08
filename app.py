@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from tavily import TavilyClient
 from groq import Groq
 load_dotenv()
-TAVILY_API_KEY = st.secrets.get('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') or os.getenv('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')
+TAVILY_API_KEY = st.secrets.get('TAVILY_API_KEYI') or os.getenv('TAVILY_API_KEY')
 GROQ_API_KEY = st.secrets.get('GROQ_API_KEY') or os.getenv('GROQ_API_KEY')
 client = Groq(api_key=GROQ_API_KEY)
 st.set_page_config(page_title='Klugekopf TechBridge AI Agent', page_icon='🤖')
