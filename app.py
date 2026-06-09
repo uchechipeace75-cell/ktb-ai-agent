@@ -4,8 +4,8 @@ from dotenv import load_dotenv
 from tavily import TavilyClient
 from groq import Groq
 load_dotenv()
-TAVILY_API_KEY = st.secrets.get('TAVILY_API_KEYI') or os.getenv('TAVILY_API_KEY')
-GROQ_API_KEY = st.secrets.get('GROQ_API_KEY') or os.getenv('GROQ_API_KEY')
+TAVILY_API_KEY =os.getenv('TAVILY_API_KEY')
+GROQ_API_KEY =os.getenv('GROQ_API_KEY')
 client = Groq(api_key=GROQ_API_KEY)
 st.set_page_config(page_title='Klugekopf TechBridge AI Agent', page_icon='🤖')
 st.title('🤖 Klugekopf TechBridge AI Agent')
@@ -27,12 +27,13 @@ if st.button('Generate Content'):
             - Meta description
             - Recommended keywords
             - SEO tips
-            """ 
+            """
             response = client.chat.completions.create(
                 model='llama-3.3-70b-versatile',
-                messages=[{'role': 'user', 'content': prompt}])
+                messages=[{'role': 'user', 'content': prompt}]
+            )
             st.success('Done!')
             st.markdown('### Generated Content')
             st.write(response.choices[0].message.content)
-else:
-            st.warning('Please enter a topic first!')
+    else:
+        st.warning('Please enter a topic first!')
